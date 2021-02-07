@@ -21,4 +21,9 @@ export class HeroesService {
   getSugerencia( termino: string): Observable<Heroe[]>{
     return  this.http.get<Heroe[]>(`http://localhost:3000/heroes?q=${termino}&_limit=4`);
   }
+
+  añadirHeroe( heroe:Heroe):Observable<Heroe>{
+     return this.http.post<Heroe>(`http://localhost:3000/heroes`, heroe);
+  }
+
 }
