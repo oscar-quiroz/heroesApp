@@ -12,12 +12,13 @@ import { HeroeComponent } from './pages/heroe/heroe.component';
 import { MaterialModule } from '../material/material.module';
 import { HeroeTarjetaComponent } from './component/heroe-tarjeta/heroe-tarjeta.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
+import { ComfirmarComponent } from './component/comfirmar/comfirmar.component';
 
 
 
 
 @NgModule({
-  declarations: [AgregarComponent, BuscarComponent, HomeHeroesComponent, ListadoComponent, HeroeComponent,HeroeTarjetaComponent, ImagenPipe],
+  declarations: [AgregarComponent, BuscarComponent, HomeHeroesComponent, ListadoComponent, HeroeComponent,HeroeTarjetaComponent, ImagenPipe, ComfirmarComponent],
   imports: [
     CommonModule,
     MaterialModule,

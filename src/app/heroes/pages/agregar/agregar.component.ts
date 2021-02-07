@@ -4,6 +4,8 @@ import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ComfirmarComponent } from '../../component/comfirmar/comfirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -35,7 +37,8 @@ export class AgregarComponent implements OnInit {
   constructor( private heroesService: HeroesService,
     private activatedRoute:ActivatedRoute,
     private router:Router,
-    private matSnackBar: MatSnackBar) { }
+    private matSnackBar: MatSnackBar,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
 
@@ -63,6 +66,7 @@ export class AgregarComponent implements OnInit {
       }else{
          this.heroesService.añadirHeroe(this.heroe)
          .subscribe( res => {
+          this.mostrarSnackBar('Se ha creado un nuevo super heroe')
            this.router.navigate(['/heroes/listado'])
 
         })
@@ -70,11 +74,25 @@ export class AgregarComponent implements OnInit {
   }
 
   borrar(){
-    this.heroesService.borrarHeroe(this.heroe.id! )
-    .subscribe(res => {
-      this.router.navigate(['/heroes'])
 
+   const dialog =  this.dialog.open( ComfirmarComponent, {
+      width: '250px',
+      data: this.heroe
     })
+
+
+    dialog.afterClosed().subscribe(
+      res => {
+        if( res ){
+          this.heroesService.borrarHeroe(this.heroe.id! )
+          .subscribe(res => {
+            this.router.navigate(['/heroes'])
+      
+          })
+        }
+      }
+    )
+   
   }
 
 
