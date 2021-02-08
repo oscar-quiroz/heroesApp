@@ -14,6 +14,8 @@ import { ComfirmarComponent } from '../../component/comfirmar/comfirmar.componen
 })
 export class AgregarComponent implements OnInit {
 
+
+  
   publishers = [
     {
       id: 'DC Comics',
